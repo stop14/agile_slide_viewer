@@ -1,0 +1,13 @@
+{
+    "name": "stop14/agile_slide_viewer",
+    "description": "A Drupal module that provides a slide viewer as a View and custom web component. Uses Slick Carousel as its core component. ",
+    "require": {
+        "php": ">=8.0"
+    },
+    "license": "MIT",
+    "extra": {
+    "installer-paths": {
+        "modules/contrib/{$name}": ["type:drupal-module"]
+      }
+    }
+}

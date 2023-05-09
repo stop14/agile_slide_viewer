@@ -1,0 +1,44 @@
+# Custom module library for general purposes.
+agile.viewer:
+  js:
+    assets/js/slideViewerComponent.js: { }
+  dependencies:
+    - agile_slide_viewer/agile.viewerDrupalIntegration
+    - agile_slide_viewer/slick.local
+    - agile_slide_viewer/agile.component
+
+agile.component:
+  js:
+    assets/js/agileComponent.js: { }
+
+agile.viewerDrupalIntegration:
+  js:
+    assets/js/slideViewerDrupalIntegration.js: { }
+  dependencies:
+    - core/drupalSettings
+    - core/drupal
+    - core/jquery
+    - core/once
+
+# Slick - local (NPM)
+
+slick.local:
+  js:
+    node_modules/slick-carousel/slick/slick.js: { }
+  css:
+    component:
+      node_modules/slick-carousel/slick/slick.css: {}
+
+# Third-party library (CDN). @todo: The minimized version doesn’t apply the SlidesPerRow option the same way, breaking some functionality. Using a local version controlled non-minimized version for now.
+slick:
+  remote: https://kenwheeler.github.io/slick/
+  version: 1.8.1
+  license:
+    name: MIT
+    url: https://spdx.org/licenses/MIT.html?utm_source=cdnjs&utm_medium=cdnjs_link&utm_campaign=cdnjs_library
+    gpl-compatible: true
+  css:
+    component:
+      https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css: {type: external}
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js: {type: external, minified: true}

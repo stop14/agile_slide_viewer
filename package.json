@@ -1,0 +1,14 @@
+{
+  "name": "agile_slide_viewer",
+  "version": "1.0.0",
+  "description": "Supporting front-end libraries for the Agile Slide Viewer Drupal 8 module",
+  "main": "no-entry.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "slick-carousel": "^1.8.1"
+  }
+}

@@ -1,0 +1,61 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Agile Slide Viewer module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
+ */
+
+use Drupal\views\ViewExecutable;
+use Drupal\Core\Template\Attribute;
+/**
+ * Implements hook_views_pre_render().
+ */
+
+function agile_slide_viewer_views_pre_render(ViewExecutable $view) {
+
+  // Attach web components and dependent libraries
+
+  if (isset($view) && ($view->style_plugin->getBaseId() == 'agile_slide_viewer')) {
+    $view->element['#attached']['library'][] = 'agile_slide_viewer/agile.viewer';
+  }
+}
+
+function agile_slide_viewer_preprocess_views_view_agile_slide_viewer(&$vars) {
+  // Get view options
+  $view = $vars['view'];
+  $rows = $vars['rows'];
+  $style = $view->style_plugin;
+  $options = $style->options;
+
+  // Add settings as template variables if needed
+
+  foreach($options as $key => $option) {
+    $vars[$key] = $option;
+  }
+
+  // Add slide viewer component options as attributes
+  $vars['viewer']['attributes'] = new Attribute([
+    'option-slidesperrow' => (string) $options['slidesperrow'],
+    'option-autoplay' => $options['autoplay'] ? "true" : "false",
+    'option-autoplaySpeed' => $options['autoplaySpeed'],
+    'option-fade' => $options['fade'] ? "true" : "false",
+    'option-speed' => $options['speed'],
+    'option-centerMode' => $options['centerMode'],
+    'option-infinite' => $options['infinite']
+  ]);
+
+  template_preprocess_views_view_unformatted($vars);
+}
+
+
+/*
+function agile_slide_viewer_preprocess_views_view_unformatted(&$vars) {
+  //$vars['content'] = \Drupal::service('renderer')->render($vars['rows']);
+
+}
+
+*/

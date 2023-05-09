@@ -1,0 +1,4 @@
+services:
+  agile.viewer.service:
+    class: Drupal\agile_slide_viewer\Services\AgileSlideViewerService
+    arguments: ['@module_handler', '@theme.manager', '@language_manager', '@config.factory']

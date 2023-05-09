@@ -1,0 +1,9 @@
+name: Agile Slide Viewer
+type: module
+description: Adds a web-component-based slider to Views.
+package: Custom
+core: 8.x
+core_version_requirement: ^8 || ^9
+dependencies:
+  - views
+  - twig_tweak

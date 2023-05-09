@@ -1,0 +1,4 @@
+administer agile_slide_viewer configuration:
+  title: 'Administer agile_slide_viewer configuration'
+  description: 'Optional description.'
+  restrict access: true

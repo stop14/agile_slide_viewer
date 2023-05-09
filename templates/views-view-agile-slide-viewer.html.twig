@@ -1,0 +1,68 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a view of unformatted rows.
+ *
+ * Available variables:
+ * - title: The title of this group of rows. May be empty.
+ * - rows: A list of the view's row items.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - view: The view object.
+ * - default_row_class: A flag indicating whether default classes should be
+ *   used on rows.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ *
+ * @ingroup themeable
+ */
+#}
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+
+{%  if rows|length > 0 %}
+  <slide-viewer {{ viewer.attributes }}>
+    <div slot="slides">
+      {% if title_slide.hastitle %}
+        <slide-item class="title-slide">
+          <div slot="slide-content">
+            {% if (title_slide.title|length > 0) %}
+              <h2>
+                {{ title_slide.title }}
+              </h2>
+            {%  endif  %}
+            {% if (title_slide.subtitle|length > 0) %}
+              <div class="subtitle">
+                {{ title_slide.subtitle }}
+              </div>
+            {%  endif  %}
+            {% if (title_slide.introduction|length > 0) %}
+              <div class="introduction">
+                {{ title_slide.introduction.value | check_markup(title_slide.introduction.format) }}
+              </div>
+            {%  endif  %}
+            {% if (title_slide.buttonText|length > 0) %}
+              <div class="cta">
+                <a class="btn next">
+                  {{ title_slide.buttonText }}
+                </a>
+              </div>
+            {%  endif  %}
+          </div>
+        </slide-item>
+      {% endif %}    {% for row in rows %}
+      {%
+        set row_classes = [
+          default_row_class ? 'views-row',
+        ]
+      %}
+      <slide-item {{ row.attributes.addClass(row_classes) }}>
+        <div slot="slide-content">
+          {{- row.content -}}
+        </div>
+      </slide-item>
+    {% endfor %}
+    </div>
+  </slide-viewer>
+{% endif %}
