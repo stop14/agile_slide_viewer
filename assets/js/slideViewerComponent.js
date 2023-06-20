@@ -436,7 +436,7 @@ class slideViewerSlick extends agileComponent { // Implements slideViewerInterfa
 
         #slide-nav {
            position: absolute;
-           bottom: var(--slide-nav-bottom,var(-slide-nav-bottom,1rem));
+           bottom: var(--slide-nav-bottom,1rem);
            top: var(--slide-nav-top,initial);
            left: var(--slide-nav-left,initial);
            right: var(--slide-nav-right,initial);
